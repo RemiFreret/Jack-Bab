@@ -4,10 +4,10 @@ namespace JBBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class PaymentController extends DefaultController
 {
     public function indexAction()
     {
-        //return $this->render('JBBundle:Default:about.html.twig');
+        return $this->render('JBBundle:Default:payment.html.twig');
     }
 }

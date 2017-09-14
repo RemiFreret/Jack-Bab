@@ -1,1 +1,34 @@
-Hello World!
+{# JBBundle/Resources/views/Default/base.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Jack&Bab{% endblock %}</title>
+    </head>
+
+    <header>
+      {% block header %}
+        {{ include('JBBundle:Template:header.html.twig', {}) }}
+      {% endblock %}
+    </header>
+
+    <body>
+        <div id="menu">
+            {% block menu %}
+            {{ include('JBBundle:Template:menu.html.twig', {}) }}
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block body %}
+              Index Body
+            {% endblock %}
+        </div>
+    </body>
+
+    <footer>
+      {% block footer %}
+        {{ include('JBBundle:Template:footer.html.twig', {}) }}
+      {% endblock %}
+    </footer>
+</html>
