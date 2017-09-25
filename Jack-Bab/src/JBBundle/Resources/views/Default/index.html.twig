@@ -3,6 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <title>{% block title %}Jack&Bab{% endblock %}</title>
     </head>
 
@@ -26,9 +27,12 @@
         </div>
     </body>
 
+
     <footer>
       {% block footer %}
         {{ include('JBBundle:Template:footer.html.twig', {}) }}
       {% endblock %}
     </footer>
+
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
 </html>
