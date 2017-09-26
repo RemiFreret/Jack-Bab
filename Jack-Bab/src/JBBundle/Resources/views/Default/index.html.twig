@@ -3,36 +3,45 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/jackbab.css') }}">
         <title>{% block title %}Jack&Bab{% endblock %}</title>
     </head>
 
-    <header>
-      {% block header %}
-        {{ include('JBBundle:Template:header.html.twig', {}) }}
-      {% endblock %}
-    </header>
 
     <body>
-        <div id="menu">
-            {% block menu %}
-            {{ include('JBBundle:Template:menu.html.twig', {}) }}
+      <div class="wrapper">
+        <div class="container-fluid text-center">
+          <div class="row content">
+            {% block nav %}
+            {{ include('JBBundle:Template:header.html.twig', {}) }}
             {% endblock %}
-        </div>
+            <div class="container">
+              <div id="menu">
+                  {% block menu %}
+                  {{ include('JBBundle:Template:menu.html.twig', {}) }}
+                  {% endblock %}
+              </div>
 
-        <div id="content">
-            {% block body %}
-              Index Body
-            {% endblock %}
-        </div>
+              <div id="content">
+                  {% block body %}
+                    Index Body
+                  {% endblock %}
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div class="push"></div>
+      </div>
     </body>
 
 
-    <footer>
+    <footer class="container-fluid text-center">
       {% block footer %}
         {{ include('JBBundle:Template:footer.html.twig', {}) }}
       {% endblock %}
     </footer>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
 </html>
