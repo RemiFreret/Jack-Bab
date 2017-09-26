@@ -18,6 +18,7 @@
 footer {
   background-color: #555;
   color: white;
+  height: 50px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
