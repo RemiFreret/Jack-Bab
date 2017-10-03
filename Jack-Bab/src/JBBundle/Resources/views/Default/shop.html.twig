@@ -11,12 +11,19 @@
           <div class="col-sm-3">
             <img src="{{ asset('JackBab.png')}}" alt="Jack&Bab" class="itemIcone"/>
           </div>
-          <div class="col-sm-9">
-            <div>{{ produit.name }}</div>
-            <div>{{ produit.description }}</div>
-            <div>Prix : {{ produit.price }}€</div>
-            <div><button type="button" name="button">Add</button></div>
-          </div>
+          <form class="" action="{{ path('jb_ajoutPanier') }}" method="post">
+            <div class="col-sm-9">
+              <input type="number" name="id" value="{{ produit.id }}" hidden>
+              <input type="text" name="name" value="{{ produit.name }}" hidden>
+              <input type="text" name="description" value="{{ produit.description }}" hidden>
+              <input type="number" name="price" value="{{ produit.price }}" hidden>
+              <div>{{ produit.name }}</div>
+              <div>{{ produit.description }}</div>
+              <div>Prix : {{ produit.price }}€</div>
+              <input type="number" name="quantity" value="1" min="1">
+              <input type="submit" value="Ajouter">
+            </div>
+          </form>
         </div>
       {% endfor %}
 
@@ -25,6 +32,29 @@
     <div class="col-sm-2 sidenav">
       <div class="well">
         <p>Le fameux panier</p>
+        {% if panier["price"] is defined and panier["price"] > 0 %}
+          {% for key, item in panier %}
+              {% if item is iterable %}
+              <div>
+                {{ item["name"] }} x {{ item["quantity"] }} : {{ item["total"] }} €
+                <form class="" action="{{ path('jb_retirerPanier') }}" method="post">
+                  <input type="number" name="key" value="{{ key }}" hidden>
+                  <input type="submit" value="X">
+                </form>
+              </div>
+              {% endif %}
+          {% endfor %}
+          <div>
+            Total : {{ panier["price"] }} €
+          </div>
+          <div>
+            <a href=" {{ path("jb_viderPanier") }} ">
+              <button type="button" name="button">Vider</button>
+            </a>
+          </div>
+        {% else %}
+        <p>Panier vide</p>
+        {% endif %}
       </div>
     </div>
 

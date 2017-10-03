@@ -9,6 +9,18 @@ $collection->add('jb_homepage', new Route('/', array(
     '_controller' => 'JBBundle:Shop:index',
 )));
 
+$collection->add('jb_ajoutPanier', new Route('/add', array(
+    '_controller' => 'JBBundle:Shop:ajout',
+)));
+
+$collection->add('jb_retirerPanier', new Route('/remove', array(
+    '_controller' => 'JBBundle:Shop:retirer',
+)));
+
+$collection->add('jb_viderPanier', new Route('/vider', array(
+    '_controller' => 'JBBundle:Shop:vider',
+)));
+
 $collection->add('jb_about', new Route('/about', array(
     '_controller' => 'JBBundle:About:index',
 )));
