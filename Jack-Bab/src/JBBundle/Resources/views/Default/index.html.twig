@@ -17,11 +17,6 @@
             {{ include('JBBundle:Template:header.html.twig', {}) }}
             {% endblock %}
             <div class="container">
-              <div id="menu">
-                  {% block menu %}
-                  {{ include('JBBundle:Template:menu.html.twig', {}) }}
-                  {% endblock %}
-              </div>
 
               <div id="content">
                   {% block body %}
@@ -30,7 +25,7 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
         <div class="push"></div>
       </div>
     </body>

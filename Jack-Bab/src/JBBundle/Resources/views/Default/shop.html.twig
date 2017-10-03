@@ -3,15 +3,31 @@
 
 {% block body %}
 
-    <div class="col-sm-8 text-left">
+    <div class="col-sm-10 text-left">
       <h1>Le fameux shop</h1>
+<!--
+      {% for produit in produits %}
+        <div class="produit container-fluid col-sm-5">
+          <div class="col-sm-2">
+            <img src="{{ asset('JackBab.png')}}" alt="Jack&Bab" class="itemIcone"/>
+          </div>
+          <div class="col-sm-9">
+            <li>{{ produit.name }}</li>
+            <li>{{ produit.description }}</li>
+            <li>Prix : {{ produit.price }}€</li>
+          </div>
+          <div class="col-sm-1">
+            <button type="button" name="button">Add</button>
+          </div>
+        </div>
+      {% endfor %}
+-->
     </div>
-    
+
     <div class="col-sm-2 sidenav">
       <div class="well">
         <p>Le fameux panier</p>
       </div>
     </div>
-
 
 {% endblock %}
