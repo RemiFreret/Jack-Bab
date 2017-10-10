@@ -13,6 +13,12 @@ class ConnexionController extends DefaultController
 
     public function commandindexAction()
     {
+
+        return $this->render('JBBundle:Default:commandconnexion.html.twig');
+    }
+
+    public function connectionAction()
+    {
         return $this->render('JBBundle:Default:commandconnexion.html.twig');
     }
 }

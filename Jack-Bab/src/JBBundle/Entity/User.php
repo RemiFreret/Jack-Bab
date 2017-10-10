@@ -24,14 +24,21 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255)
      */
-    private $name;
+    private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="lastName", type="string", length=255)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
 
@@ -54,27 +61,51 @@ class User
     }
 
     /**
-     * Set name
+     * Set firstName
      *
-     * @param string $name
+     * @param string $firstName
      *
      * @return User
      */
-    public function setName($name)
+    public function setFirstName($firstName)
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get firstName
      *
      * @return string
      */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->name;
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 
     /**
@@ -125,4 +156,3 @@ class User
         return $this->password;
     }
 }
-
