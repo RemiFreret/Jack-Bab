@@ -10,6 +10,8 @@ class ConnexionController extends DefaultController
 {
     public function indexAction()
     {
+        $session = $this->get('session');
+        $session->set('user', array());
         return $this->render('JBBundle:Default:connexion.html.twig');
     }
 
@@ -28,7 +30,9 @@ class ConnexionController extends DefaultController
           );
 
         if (!$user) { // Si le mail est pas correct
-            return $this->render('JBBundle:Default:commandconnexion.html.twig');
+            return $this->render('JBBundle:Default:connexion.html.twig', array(
+                  'email' => 1,
+                ));
         }
         else { // Vérification du mot de passe
             $factory = $this->get('security.encoder_factory');
@@ -37,9 +41,11 @@ class ConnexionController extends DefaultController
             $valid = $encoder->isPasswordValid($user->getPassword(), $request->get('inputPassword'), $user->getSalt());
 
             if (!$valid) { // Si le mdp est pas correct
-                return $this->render('JBBundle:Default:commandconnexion.html.twig');
+                return $this->render('JBBundle:Default:connexion.html.twig', array(
+                      'mdp' => 1,
+                    ));
             }
-            else {
+            else { // Connection, user dans la session
                 $session = $this->get('session');
                 $session->set('user',
                     array('firstName' => $user->getFirstName(), 'lastName' => $user->getLastName(), 'email' => $user->getEmail())

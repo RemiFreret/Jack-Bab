@@ -16,27 +16,41 @@ class RegistrationController extends DefaultController
 
     public function inscriptionAction(Request $request)
     {
-        // Init
-        $em = $this->getDoctrine()->getManager();
-        $user = new User();
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findOneBy(
+                array('email' => $request->get('email'))
+            );
 
-        // Password encryption
-        $factory = $this->get('security.encoder_factory');
-        $encoder = $factory->getEncoder($user);
-        $salt = uniqid(mt_rand(), true);
-        $password = $encoder->encodePassword($request->get('password'), $salt);
+        if (!$user) { // Si le mail n'est pas déja utilisé
 
-        // Creating the user
-        $user->setPassword($password);
-        $user->setLastName($request->get('lastname'));
-        $user->setFirstName($request->get('firstname'));
-        $user->setEmail($request->get('email'));
-        $user->setSalt($salt);
+          // Init
+          $em = $this->getDoctrine()->getManager();
+          $user = new User();
 
-        // Executing the query on database
-        $em->persist($user);
-        $em->flush();
+          // Password encryption
+          $factory = $this->get('security.encoder_factory');
+          $encoder = $factory->getEncoder($user);
+          $salt = uniqid(mt_rand(), true);
+          $password = $encoder->encodePassword($request->get('password'), $salt);
 
-        return $this->redirectToRoute('jb_homepage');
+          // Creating the user
+          $user->setPassword($password);
+          $user->setLastName($request->get('lastname'));
+          $user->setFirstName($request->get('firstname'));
+          $user->setEmail($request->get('email'));
+          $user->setSalt($salt);
+
+          // Executing the query on database
+          $em->persist($user);
+          $em->flush();
+
+          return $this->redirectToRoute('jb_homepage');
+        }
+        else {
+          return $this->render('JBBundle:Default:registration.html.twig', array(
+            'email' => 1,
+          ));
+        }
     }
 }

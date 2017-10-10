@@ -14,6 +14,9 @@
       <input type="password" name="password" class="form-control form2" placeholder="Mot de passe" required>
       <label for="passwordverif" class="sr-only">Confirmer le mot de passe</label>
       <input type="password" name="passwordverif" class="form-control form3" placeholder="Confirmer le mot de passe" required>
+      {% if email is defined %}
+      <div class="alert alert-danger">Cette adresse email est déjà associée à un compte</div>
+      {% endif %}
       <button id="btnIscription" class="btn btn-lg btn-primary btn-block" type="submit">S'inscrire</button>
       <div id="test" hidden>
         * Validation du mot de passe incorrecte
