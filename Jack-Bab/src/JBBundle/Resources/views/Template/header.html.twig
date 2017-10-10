@@ -20,7 +20,12 @@
         <li><a href="contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="connexion"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+        {% if app.session.get('user').email is defined %}
+          <li><a href="#">Bonjour {{ app.session.get('user').firstName }} {{ app.session.get('user').lastName }} </a></li>
+          <li><a href="deconnexion"><span class="glyphicon glyphicon-log-in"></span> Deconnexion</a></li>
+        {% else %}
+          <li><a href="connexion"><span class="glyphicon glyphicon-log-in"></span> Connexion</a></li>
+        {% endif %}
       </ul>
     </div>
   </div>
