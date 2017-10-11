@@ -8,6 +8,6 @@ class CommandListController extends DefaultController
 {
     public function indexAction()
     {
-        return $this->render('JBBundle:Default:connexion.html.twig');
+        return $this->render('JBBundle:Default:commandlist.html.twig');
     }
 }

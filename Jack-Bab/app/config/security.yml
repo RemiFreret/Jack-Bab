@@ -22,3 +22,9 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+
+    encoders:
+        JBBundle\Entity\User:
+            algorithm:   sha1
+            iterations: 1
+            encode_as_base64: false

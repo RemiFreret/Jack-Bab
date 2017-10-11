@@ -33,6 +33,10 @@ $collection->add('jb_connexion', new Route('/connexion', array(
     '_controller' => 'JBBundle:Connexion:index',
 )));
 
+$collection->add('jb_connexionVerif', new Route('/connexionVerif', array(
+    '_controller' => 'JBBundle:Connexion:connection',
+)));
+
 $collection->add('jb_commandconnexion', new Route('/comandconnexion', array(
     '_controller' => 'JBBundle:Connexion:commandindex',
 )));
@@ -51,6 +55,10 @@ $collection->add('jb_commandlist', new Route('/commandlist', array(
 
 $collection->add('jb_registration', new Route('/registration', array(
   '_controller' => 'JBBundle:Registration:index',
+)));
+
+$collection->add('jb_registrationValidate', new Route('/registrationvalidate', array(
+  '_controller' => 'JBBundle:Registration:inscription',
 )));
 
 $collection->add('jb_contact', new Route('/contact', array(

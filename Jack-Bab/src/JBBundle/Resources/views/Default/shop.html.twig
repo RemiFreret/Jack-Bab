@@ -4,12 +4,12 @@
 {% block body %}
 
     <div class="col-sm-10 text-left">
-      <h1>Le fameux shop</h1>
+      <h1>Nos produits</h1>
 
       {% for produit in produits %}
         <div class="produit container-fluid col-sm-5">
           <div class="col-sm-3">
-            <img src="{{ asset('JackBab.png')}}" alt="Jack&Bab" class="itemIcone"/>
+            <img src="{{ asset('JackBab.png')}}" alt="Jack&Bab" class="itemIcone" style="padding-top: 25%;"/>
           </div>
           <form class="" action="{{ path('jb_ajoutPanier') }}" method="post">
             <div class="col-sm-9">
@@ -17,11 +17,13 @@
               <input type="text" name="name" value="{{ produit.name }}" hidden>
               <input type="text" name="description" value="{{ produit.description }}" hidden>
               <input type="number" name="price" value="{{ produit.price }}" hidden>
-              <div>{{ produit.name }}</div>
-              <div>{{ produit.description }}</div>
-              <div>Prix : {{ produit.price }}€</div>
-              <input type="number" name="quantity" value="1" min="1">
-              <input type="submit" value="Ajouter">
+              <div class="col-sm-12">{{ produit.name }}</div>
+              <div class="col-sm-12">{{ produit.description }}</div>
+              <div class="col-sm-12">Prix : {{ produit.price }}€</div>
+              <div class="col-sm-12">
+                  <input type="number" name="quantity" value="1" min="1" class="col-sm-5">
+                  <input type="submit" value="Ajouter">
+              </div>
             </div>
           </form>
         </div>
@@ -31,26 +33,35 @@
 
     <div class="col-sm-2 sidenav">
       <div class="well">
-        <p>Le fameux panier</p>
+          <p><h4>Votre panier</h4></p>
+
+        {% set panier = app.session.get('panier') %}
         {% if panier["price"] is defined and panier["price"] > 0 %}
           {% for key, item in panier %}
               {% if item is iterable %}
+              <p>
               <div>
-                {{ item["name"] }} x {{ item["quantity"] }} : {{ item["total"] }} €
+
                 <form class="" action="{{ path('jb_retirerPanier') }}" method="post">
                   <input type="number" name="key" value="{{ key }}" hidden>
-                  <input type="submit" value="X">
+                  {{ item["name"] }} x {{ item["quantity"] }} <input type="submit" value="X">
                 </form>
               </div>
+              <p>
               {% endif %}
           {% endfor %}
+          <p>
           <div>
-            Total : {{ panier["price"] }} €
+            <strong>Total : {{ panier["price"] }} €</strong>
           </div>
+          <hr>
           <div>
-            <a href=" {{ path("jb_viderPanier") }} ">
-              <button type="button" name="button">Vider</button>
-            </a>
+              <a href=" {{ path("jb_commandlist") }} ">
+                  <button type="button" name="button">Confirmer</button>
+              </a>
+              <a href=" {{ path("jb_viderPanier") }} ">
+                  <button type="button" name="button">Vider</button>
+              </a>
           </div>
         {% else %}
         <p>Panier vide</p>
