@@ -29,7 +29,6 @@ class ShopController extends DefaultController
 
         return $this->render('JBBundle:Default:shop.html.twig', array(
                       'produits' => $product,
-                      'panier' => $session->get('panier'),
                     ));
     }
 
