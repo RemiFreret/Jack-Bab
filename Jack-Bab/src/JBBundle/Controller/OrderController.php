@@ -20,17 +20,29 @@ class OrderController extends Controller
     {
         $commande = new Commande();
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class,$commande);
+        if(!$this->get('session')->get('user')){
+            $formBuilder
+                ->add('email',EmailType::class)
+                ->add('firstName',TextType::class)
+                ->add('lastName',TextType::class)
+            ;
+        }
 
         $formBuilder
-            ->add('email',EmailType::class)
-            ->add('firstName',TextType::class)
-            ->add('lastName',TextType::class)
-
-            ->add('dateRetrait',DateType::class)
+            ->add('dateRetrait',DateType::class,array(
+                'widget' => 'single_text',
+                'format' => 'MM-yyyy',
+                'attr' =>['placeholder'=>'MM-yyyy'],
+            ))
 
             ->add('cardNumber',TextType::class)
             ->add('crypto',TextType::class)
-            ->add('dateExp',DateType::class)
+            ->add('dateExp',DateType::class,array(
+                'widget' => 'single_text',
+                'format' => 'MM-yyyy',
+                'attr' =>['placeholder'=>'MM-yyyy'],
+            ))
+
 
             ->add('Valider',SubmitType::class)
         ;
@@ -41,6 +53,7 @@ class OrderController extends Controller
         if($request->isMethod('POST')){
 
             $form->handleRequest($request);
+
             if($form->isValid()){
                 return $this->redirectToRoute('jb_payment',array('commande'=>$commande));
             }
