@@ -12,9 +12,19 @@ class PaymentController extends Controller
 {
     public function indexAction()
     {
-        $test = $this->get('session')->getFlashBag();
-        foreach ($test->get("commandeId") as $message) {
+        $commandeId = $this->get('session')->getFlashBag()->get('commandeId');
+        if(!$commandeId){
+            return new Response("The fuck you're doing here ? oO");
         }
-        return $this->render('JBBundle:Default:payment.html.twig');
+        foreach( $commandeId as $message){
+            $commande = [];
+            $commandeItem = $this->getDoctrine()->getManager()->getRepository('JBBundle:Commande')->find($message);
+            $commande['firstName'] = $commandeItem->getFirstName();
+            $commande['lastName'] = $commandeItem->getLastName();
+            $commande['email'] = $commandeItem->getEmail();
+            $commande['id'] = $commandeItem->getId();
+        }
+        $this->get('session')->set('panier', array());
+        return $this->render('JBBundle:Default:payment.html.twig',array('commande' => $commande));
     }
 }

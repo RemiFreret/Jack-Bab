@@ -2,5 +2,6 @@
 {% extends 'JBBundle:Default:index.html.twig' %}
 
 {% block body %}
-Payment
+Your name is {{commande.firstName}} {{commande.lastName}}
+Votre mail est {{commande.email}} et vous avez la commande numéro {{commande.id}}
 {% endblock %}
