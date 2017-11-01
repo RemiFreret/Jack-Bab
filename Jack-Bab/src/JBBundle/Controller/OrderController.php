@@ -20,19 +20,26 @@ class OrderController extends Controller
     {
         $commande = new Commande();
         $formBuilder = $this->get('form.factory')->createBuilder(FormType::class,$commande);
-        if(!$this->get('session')->get('user')){
+        $user = $this->get('session')->get('user');
+        if(!$user){
             $formBuilder
                 ->add('email',EmailType::class)
                 ->add('firstName',TextType::class)
                 ->add('lastName',TextType::class)
             ;
+        } else {
+            $commande->setEmail($user['email']);
+            $commande->setFirstName($user['firstName']);
+            $commande->setLastName($user['lastName']);
         }
+
+        $commande->setListProduit($this->get('session')->get('panier'));
 
         $formBuilder
             ->add('dateRetrait',DateType::class,array(
                 'widget' => 'single_text',
-                'format' => 'MM-yyyy',
-                'attr' =>['placeholder'=>'MM-yyyy'],
+                'format' => 'dd-MM-yyyy',
+                'attr' =>['placeholder'=>'dd-MM-yyyy'],
             ))
 
             ->add('cardNumber',TextType::class)
@@ -55,7 +62,11 @@ class OrderController extends Controller
             $form->handleRequest($request);
 
             if($form->isValid()){
-                return $this->redirectToRoute('jb_payment',array('commande'=>$commande));
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($commande);
+                $em->flush();
+                $this->get('session')->getFlashBag()->add("commandeId",$commande->getId());
+                return $this->redirectToRoute('jb_payment');
             }
         }
 

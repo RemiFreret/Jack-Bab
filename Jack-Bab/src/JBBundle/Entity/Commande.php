@@ -3,7 +3,7 @@
 namespace JBBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Commande
  *
@@ -46,13 +46,26 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="cardNumber", type="string", length=255)
+     *
+     * @Assert\CardScheme(
+     *     schemes={"MASTERCARD"},
+     *     message="Your credit card number is invalid."
+     * )
      */
     private $cardNumber;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="crypto", type="string", length=255)
+     * @ORM\Column(name="crypto", type="integer", length=3)
+     *
+     * @Assert\Range(
+     *      min = 000,
+     *      max = 999,
+     *      minMessage = "Enter a number between 000 and 999",
+     *      maxMessage = "Enter a number between 000 and 999"
+     * )
+     *
      */
     private $crypto;
 
@@ -187,7 +200,7 @@ class Commande
     /**
      * Set crypto
      *
-     * @param string $crypto
+     * @param integer $crypto
      *
      * @return Commande
      */
@@ -201,7 +214,7 @@ class Commande
     /**
      * Get crypto
      *
-     * @return string
+     * @return integer
      */
     public function getCrypto()
     {

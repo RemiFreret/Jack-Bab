@@ -2,46 +2,5 @@
 {% extends 'JBBundle:Default:index.html.twig' %}
 
 {% block body %}
-<div class="col-sm-3"></div>
-<div class="col-sm-6 sidenav">
-   <div class="well">
-       <p><h2>Votre panier</h2></p>
-       <hr>
-
-
-     {% set panier = app.session.get('panier') %}
-     {% if panier["price"] is defined and panier["price"] > 0 %}
-       {% for key, item in panier %}
-           {% if item is iterable %}
-           <p>
-           <div style="width: 150px; margin: auto ">
-             <form class="" action="{{ path('jb_retirerPanier') }}" method="post">
-               <input type="number" name="key" value="{{ key }}" hidden>
-               <div>{{ item["name"] }} : {{ item["price"] }} €</div>
-               <div>Quantité : {{ item["quantity"] }}</div>
-               <div>Sous-total : {{ item["total"] }} €</div>
-             </form>
-           </div>
-           <p>
-           {% endif %}
-       {% endfor %}
-       <p>
-       <div>
-         <strong>Total : {{ panier["price"] }} €</strong>
-       </div>
-       <hr>
-       <div>
-           <a href=" {{ path("jb_homepage") }} ">
-               <button type="button" name="button">Modifer</button>
-           </a>
-           <a href=" {{ path("jb_order") }} ">
-               <button type="button" name="button">Commander</button>
-           </a>
-       </div>
-     {% else %}
-     <p>Panier vide</p>
-     {% endif %}
-   </div>
-</div>
-<div class="col-sm-3"></div>
+commandlist
 {% endblock %}

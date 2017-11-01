@@ -37,7 +37,7 @@ $collection->add('jb_connexionVerif', new Route('/connexionVerif', array(
     '_controller' => 'JBBundle:Connexion:connection',
 )));
 
-$collection->add('jb_commandconnexion', new Route('/comandconnexion', array(
+$collection->add('jb_commandconnexion', new Route('/commandconnexion', array(
     '_controller' => 'JBBundle:Connexion:commandindex',
 )));
 
