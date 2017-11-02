@@ -3,4 +3,16 @@
 
 {% block body %}
 commandlist
+{% for command in listeCommande %}
+    <p>
+    Commande {{command.id}}, pour {{command.firstName}} {{command.lastName}}</br>
+    Récuperation à : {{command.dateRetrait|date("d/m/Y")}}</br>
+    Contient :
+    {% for item in command.listProduit %}
+        {% if (not loop.last)%}
+        {{item.quantity}} - {{item.name}}
+        {% endif%}
+    {% endfor %}
+    </p>
+{% endfor %}
 {% endblock %}
