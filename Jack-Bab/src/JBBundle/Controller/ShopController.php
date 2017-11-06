@@ -36,8 +36,12 @@ class ShopController extends DefaultController
     {
       $session = $this->get('session');
       $panier = $session->get('panier');
+      $itemRepo = $this->getDoctrine()->getManager()->getRepository('JBBundle:Product');
+
+      //TODO Check with db rather than user input
 
       if ( isset($panier[$request->get('id')]) ) {
+
         $panier[$request->get('id')]["quantity"] += $request->get('quantity');
         $panier[$request->get('id')]["total"] = $panier[$request->get('id')]["quantity"] * $panier[$request->get('id')]["price"];
       }

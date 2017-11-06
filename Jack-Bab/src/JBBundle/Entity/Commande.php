@@ -24,6 +24,11 @@ class Commande
     /**
      * @var string
      *
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
+     *
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
@@ -73,6 +78,18 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateExp", type="date")
+     *
+     * @Assert\GreaterThan(
+     *      value = "today",
+     *      message = "Your card has expired"
+     * )
+     *
+     * @Assert\GreaterThan(
+     *      value = "+7 days",
+     *      message = "Your card expire too soon, we may not be able to
+     *      validate your payment"
+     * )
+      *
      */
     private $dateExp;
 
@@ -80,6 +97,17 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateRetrait", type="datetime")
+     *
+     * @Assert\GreaterThan(
+     *      value = "-1 minute",
+     *      message = "We don't yet have a time travel machine"
+     * )
+     *
+     * @Assert\GreaterThan(
+     *      value = "+30 minutes",
+     *      message = "Let us 30 minutes at least to prepare your command"
+     * )
+
      */
     private $dateRetrait;
 
