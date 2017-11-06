@@ -93,7 +93,7 @@ class Commande
     /**
      * @var integer
      *
-     * @ORM\Column(name="range", type="integer", length=1)
+     * @ORM\Column(name="range", type="integer", length=1, options={"default" : 0})
      *
      * @Assert\Range(
      *      min = 0,
@@ -103,7 +103,7 @@ class Commande
      * )
      *
      */
-    private $state = 0;
+    private $state;
     /**
      * Get id
      *
