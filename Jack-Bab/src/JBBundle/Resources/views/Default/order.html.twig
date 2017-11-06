@@ -2,8 +2,47 @@
 {% extends 'JBBundle:Default:index.html.twig' %}
 
 {% block body %}
-Order
-<div class = "form-signin">
-{{form(form)}}
-</div>
+  <h3>Informations</h3>
+  <!-- <div class = "form-signin"> {# {{form(form)}} #} -->
+  <div class="well col-sm-10">
+      {{ form_start(form, {'attr': {'class': 'form-signin'}}) }}
+      {{ form_errors(form) }}
+      {{ form_widget(form.email, {'attr': {'placeholder': 'Adresse Mail', 'class' : 'form-control form1'} }) }}
+      {{ form_widget(form.firstName, {'attr': {'placeholder': 'Prenom', 'class' : 'form-control form2'} }) }}
+      {{ form_widget(form.lastName, {'attr': {'placeholder': 'Nom', 'class' : 'form-control form3'} }) }}
+
+      <label>Date et heure de retrait de la commande :</label>
+      {{ form_widget(form.dateRetrait) }}
+      <br>
+      {{ form_widget(form.cardNumber, {'attr': {'placeholder': 'Numero de carte', 'class' : 'form-control form1'} }) }}
+      {{ form_widget(form.crypto, {'attr': {'placeholder': 'Cryptogramme', 'class' : 'form-control form3'} }) }}
+      {{ form_widget(form.dateExp.day, {'attr' : {'class' : 'hide'}}) }}
+
+      <label>Date d'expiration :</label>
+      {{ form_widget(form.dateExp) }}
+      <br>
+      {{ form_widget(form.Valider, {'attr': {'class' : ' btn btn-block btn-lg btn-primary'}}) }}
+      {{ form_end(form) }}
+
+  </div>
+
+  <style media="screen">
+  .form1{
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form2{
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .form3{
+     margin-bottom: 10px;
+     border-top-left-radius: 0;
+     border-top-right-radius: 0;
+  }
+  </style>
 {% endblock %}

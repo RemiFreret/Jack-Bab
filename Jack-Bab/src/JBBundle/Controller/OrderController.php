@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-
 use Symfony\Component\HttpFoundation\Request;
 
 use JBBundle\Entity\Commande;
@@ -36,19 +35,24 @@ class OrderController extends Controller
 
         $commande->setListProduit($this->get('session')->get('panier'));
 
+        $time = new \DateTime();
+        $time = $time -> add(\DateInterval::createFromDateString('1800 seconds'));
+
+
         $formBuilder
             ->add('dateRetrait', DateTimeType::class, array(
                 'format' => 'yyyy-MM-dd HH:mm',
                 'placeholder' => array(
-                'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
-                'hour' => 'Hour', 'minute' => 'Minute',
+                'year' =>  $time -> format('Y') , 'month' => $time -> format('M'), 'day' => $time -> format('D'),
+                'hour' => $time -> format('H'), 'minute' => $time -> format('i'),
             )))
             ->add('cardNumber',TextType::class)
             ->add('crypto',TextType::class)
-            ->add('dateExp',DateType::class,array(
-                'placeholder' => array(
-                'year' => 'Year', 'month' => 'Month',
-            )))
+            ->add('dateExp',DateType::class, array(
+              'placeholder' => array(
+                'year' => $time -> format('Y'), 'month' => $time -> format('M')
+              )
+            ))
 
 
             ->add('Valider',SubmitType::class)
