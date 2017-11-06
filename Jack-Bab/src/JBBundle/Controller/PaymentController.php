@@ -14,7 +14,7 @@ class PaymentController extends Controller
     {
         $commandeId = $this->get('session')->getFlashBag()->get('commandeId');
         if(!$commandeId){
-            return new Response("The fuck you're doing here ? oO");
+            return $this->redirectToRoute('jb_homepage');
         }
         foreach( $commandeId as $message){
             $commande = [];

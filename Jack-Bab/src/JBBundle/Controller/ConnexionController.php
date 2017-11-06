@@ -48,7 +48,7 @@ class ConnexionController extends DefaultController
             else { // Connection, user dans la session
                 $session = $this->get('session');
                 $session->set('user',
-                    array('firstName' => $user->getFirstName(), 'lastName' => $user->getLastName(), 'email' => $user->getEmail())
+                    array('firstName' => $user->getFirstName(), 'lastName' => $user->getLastName(), 'email' => $user->getEmail(),'rights' => $user->getRights())
                 );
                 return $this->redirectToRoute('jb_homepage');
             }
