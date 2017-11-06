@@ -79,7 +79,7 @@ class Commande
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateRetrait", type="date")
+     * @ORM\Column(name="dateRetrait", type="datetime")
      */
     private $dateRetrait;
 

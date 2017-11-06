@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 
 use Symfony\Component\HttpFoundation\Request;
@@ -36,19 +37,18 @@ class OrderController extends Controller
         $commande->setListProduit($this->get('session')->get('panier'));
 
         $formBuilder
-            ->add('dateRetrait',DateType::class,array(
-                'widget' => 'single_text',
-                'format' => 'dd-MM-yyyy',
-                'attr' =>['placeholder'=>'dd-MM-yyyy'],
-            ))
-
+            ->add('dateRetrait', DateTimeType::class, array(
+                'format' => 'yyyy-MM-dd HH:mm',
+                'placeholder' => array(
+                'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                'hour' => 'Hour', 'minute' => 'Minute',
+            )))
             ->add('cardNumber',TextType::class)
             ->add('crypto',TextType::class)
             ->add('dateExp',DateType::class,array(
-                'widget' => 'single_text',
-                'format' => 'MM-yyyy',
-                'attr' =>['placeholder'=>'MM-yyyy'],
-            ))
+                'placeholder' => array(
+                'year' => 'Year', 'month' => 'Month',
+            )))
 
 
             ->add('Valider',SubmitType::class)

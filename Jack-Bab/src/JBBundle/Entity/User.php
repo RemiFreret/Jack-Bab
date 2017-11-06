@@ -3,6 +3,7 @@
 namespace JBBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -56,6 +57,20 @@ class User
      */
     private $salt;
 
+    /**
+     * @var int
+     *
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 2,
+     *      minMessage = "rights must be set between 0 and 2",
+     *      maxMessage = "rights must be set between 0 and 2"
+     * )
+
+     * @ORM\Column(name="rights", type="integer")
+     */
+
+    private $rights = 0;
 
     /**
      * Get id
@@ -186,4 +201,29 @@ class User
     {
         return $this->salt;
     }
+
+    /**
+     * Set rights
+     *
+     * @param int $rights
+     *
+     * @return User
+     */
+    public function setRights($rights)
+    {
+        $this->rights = $rights;
+
+        return $this;
+    }
+
+    /**
+     * Get rights
+     *
+     * @return int
+     */
+    public function getRights()
+    {
+        return $this->rights;
+    }
+
 }
