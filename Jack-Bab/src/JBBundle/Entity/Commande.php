@@ -90,7 +90,20 @@ class Commande
      */
     private $listProduit;
 
-
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="range", type="integer", length=1)
+     *
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 2,
+     *      minMessage = "Enter a number between 0 and 2",
+     *      maxMessage = "Enter a number between 0 and 2"
+     * )
+     *
+     */
+    private $state = 0;
     /**
      * Get id
      *
@@ -292,5 +305,31 @@ class Commande
     {
         return $this->listProduit;
     }
+
+    /**
+     * Set state
+     *
+     * @param integer $state
+     *
+     * @return Commande
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return integer
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+
 }
 
