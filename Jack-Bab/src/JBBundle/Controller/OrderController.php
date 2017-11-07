@@ -42,16 +42,12 @@ class OrderController extends Controller
         $formBuilder
             ->add('dateRetrait', DateTimeType::class, array(
                 'format' => 'yyyy-MM-dd HH:mm',
-                'placeholder' => array(
-                'year' =>  $time -> format('Y') , 'month' => $time -> format('M'), 'day' => $time -> format('D'),
-                'hour' => $time -> format('H'), 'minute' => $time -> format('i'),
-            )))
+                'data' => $time,
+            ))
             ->add('cardNumber',TextType::class)
             ->add('crypto',TextType::class)
             ->add('dateExp',DateType::class, array(
-              'placeholder' => array(
-                'year' => $time -> format('Y'), 'month' => $time -> format('M')
-              )
+              'data' => $time,
             ))
 
 

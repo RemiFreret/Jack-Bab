@@ -5,11 +5,14 @@
   <h3>Informations</h3>
   <!-- <div class = "form-signin"> {# {{form(form)}} #} -->
   <div class="well col-sm-10">
-      {{ form_start(form, {'attr': {'class': 'form-signin'}}) }}
-      {{ form_errors(form) }}
+
+    {{ form_start(form, {'attr': {'class': 'form-signin'}}) }}
+    {{ form_errors(form) }}
+    {% if form.email is defined %}
       {{ form_widget(form.email, {'attr': {'placeholder': 'Adresse Mail', 'class' : 'form-control form1'} }) }}
       {{ form_widget(form.firstName, {'attr': {'placeholder': 'Prenom', 'class' : 'form-control form2'} }) }}
       {{ form_widget(form.lastName, {'attr': {'placeholder': 'Nom', 'class' : 'form-control form3'} }) }}
+    {% endif %}
 
       <label>Date et heure de retrait de la commande :</label>
       {{ form_widget(form.dateRetrait) }}
