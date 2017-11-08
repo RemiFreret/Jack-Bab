@@ -19,7 +19,7 @@ class CommandListController extends DefaultController
             ->getRepository('JBBundle:Commande')
         ;
 
-        $listeCommande = $repository->findAll();
+        $listeCommande = $repository->findNext();
 
         return $this->render('JBBundle:Default:commandlist.html.twig',array('listeCommande' => $listeCommande));
     }
