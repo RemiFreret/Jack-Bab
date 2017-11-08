@@ -2,50 +2,70 @@
 {% extends 'JBBundle:Default:index.html.twig' %}
 
 {% block body %}
-  <h3>Informations</h3>
   <!-- <div class = "form-signin"> {# {{form(form)}} #} -->
-  <div class="well col-sm-10">
-
+  <div class="well col-sm-10 center-div">
+    <h3>Informations</h3>
     {{ form_start(form, {'attr': {'class': 'form-signin'}}) }}
     {{ form_errors(form) }}
     {% if form.email is defined %}
+
       {{ form_widget(form.email, {'attr': {'placeholder': 'Adresse Mail', 'class' : 'form-control form1'} }) }}
+      {{ form_errors(form.email) }}
+      
       {{ form_widget(form.firstName, {'attr': {'placeholder': 'Prenom', 'class' : 'form-control form2'} }) }}
+      {{ form_errors(form.firstName) }}
+
       {{ form_widget(form.lastName, {'attr': {'placeholder': 'Nom', 'class' : 'form-control form3'} }) }}
+      {{ form_errors(form.lastName) }}
     {% endif %}
 
-      <label>Date et heure de retrait de la commande :</label>
+    <label>Date et heure de retrait de la commande :</label>
+    <div class="col-sm-10">
       {{ form_widget(form.dateRetrait) }}
-      <br>
-      {{ form_widget(form.cardNumber, {'attr': {'placeholder': 'Numero de carte', 'class' : 'form-control form1'} }) }}
-      {{ form_widget(form.crypto, {'attr': {'placeholder': 'Cryptogramme', 'class' : 'form-control form3'} }) }}
-      {{ form_widget(form.dateExp.day, {'attr' : {'class' : 'hide'}}) }}
+      {{ form_errors(form.dateRetrait) }}
+    </div>
 
-      <label>Date d'expiration :</label>
-      {{ form_widget(form.dateExp) }}
-      <br>
-      {{ form_widget(form.Valider, {'attr': {'class' : ' btn btn-block btn-lg btn-primary'}}) }}
-      {{ form_end(form) }}
+  </br>
+
+    {{ form_widget(form.cardNumber, {'attr': {'placeholder': 'Numero de carte', 'class' : 'form-control form1'} }) }}
+    {{ form_errors(form.cardNumber) }}
+    {{ form_widget(form.crypto, {'attr': {'placeholder': 'Cryptogramme', 'class' : 'form-control form3'} }) }}
+    {{ form_errors(form.crypto) }}
+
+
+    <label>Date d'expiration :</label>
+    {{ form_widget(form.dateExp.day, {'attr' : {'class' : 'hide'}}) }}
+    {{ form_widget(form.dateExp) }}
+    {{ form_errors(form.dateExp) }}
+  </br>
+
+    {{ form_widget(form.Valider, {'attr': {'class' : ' btn btn-block btn-lg btn-primary'}}) }}
+    {{ form_end(form) }}
 
   </div>
+</div>
 
-  <style media="screen">
-  .form1{
+<style media="screen">
+  .form1 {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
-  .form2{
+  .center-div {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .form2 {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
   }
-  .form3{
-     margin-bottom: 10px;
-     border-top-left-radius: 0;
-     border-top-right-radius: 0;
+  .form3 {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
-  </style>
+</style>
 {% endblock %}

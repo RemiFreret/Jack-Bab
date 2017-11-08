@@ -5,4 +5,10 @@
 <h3>Récapitulatif de commande</h3>
 Your name is {{commande.firstName}} {{commande.lastName}}
 Votre mail est {{commande.email}} et vous avez la commande numéro {{commande.id}}
+
+{{ commande.cardNumber }}
+Vous pouvez retirer votre commande le {{ commande.dateRetrait|date('m-d') }} à {{ commande.dateRetrait|date('H:i') }}
+{% for produit in commande.listProduit  %}
+
+{% endfor %}
 {% endblock %}

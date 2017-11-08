@@ -23,6 +23,10 @@ class PaymentController extends Controller
             $commande['lastName'] = $commandeItem->getLastName();
             $commande['email'] = $commandeItem->getEmail();
             $commande['id'] = $commandeItem->getId();
+            $commande['cardNumber'] = $commandeItem->getCardNumber();
+            $commande['dateRetrait'] = $commandeItem->getDateRetrait();
+            $commande['listProduit'] = $commandeItem->getListProduit();
+
         }
         $this->get('session')->set('panier', array());
         return $this->render('JBBundle:Default:payment.html.twig',array('commande' => $commande));

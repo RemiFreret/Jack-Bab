@@ -36,7 +36,7 @@ class OrderController extends Controller
         $commande->setListProduit($this->get('session')->get('panier'));
 
         $time = new \DateTime();
-        $time = $time -> add(\DateInterval::createFromDateString('1800 seconds'));
+        $time = $time -> add(\DateInterval::createFromDateString('1920 seconds'));
 
 
         $formBuilder
