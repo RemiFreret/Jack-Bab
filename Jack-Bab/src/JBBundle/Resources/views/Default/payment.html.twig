@@ -3,12 +3,24 @@
 
 {% block body %}
 <h3>Récapitulatif de commande</h3>
-Your name is {{commande.firstName}} {{commande.lastName}}
-Votre mail est {{commande.email}} et vous avez la commande numéro {{commande.id}}
-
-{{ commande.cardNumber }}
-Vous pouvez retirer votre commande le {{ commande.dateRetrait|date('m-d') }} à {{ commande.dateRetrait|date('H:i') }}
-{% for produit in commande.listProduit  %}
-
-{% endfor %}
+<div class="well">
+  <p>Merci pour votre commande {{ commande.firstName }} {{ commande.lastName }} !</p>
+  <p>Vous pouvez retirer votre commande le <B>{{ commande.dateRetrait|date('m-d') }}</B> à <B>{{ commande.dateRetrait|date('H:i') }}</B></p>
+  <p>Vous avez commandé :</p>
+  {% for item in commande.listProduit %}
+      {% if item is iterable%}
+      <p>
+        <B>{{item.quantity}} {{item.name}}</B></br>
+      </p>
+      {% endif%}
+  {% endfor %}
+  {% for price in commande.listProduit %}
+      {% if not price is iterable%}
+      <p>
+        Prix total = <B>{{ price }} €</B>
+      </p>
+      {% endif %}
+  {% endfor %}
+  <p>Vous avez la commande numéro <B>{{ commande.id }}</B>.</p>
+</div>
 {% endblock %}
