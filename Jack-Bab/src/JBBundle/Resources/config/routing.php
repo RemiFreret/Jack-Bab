@@ -53,6 +53,10 @@ $collection->add('jb_commandlist', new Route('/commandlist', array(
   '_controller' => 'JBBundle:CommandList:index',
 )));
 
+$collection->add('jb_commandliststatus', new Route('/commandliststatus', array(
+  '_controller' => 'JBBundle:CommandList:status',
+)));
+
 $collection->add('jb_registration', new Route('/registration', array(
   '_controller' => 'JBBundle:Registration:index',
 )));
