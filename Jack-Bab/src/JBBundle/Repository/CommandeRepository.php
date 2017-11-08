@@ -35,6 +35,7 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
             ->andWhere('e.dateRetrait BETWEEN :from AND :to')
             ->setParameter('from', $now )
             ->setParameter('to', $next)
+            ->orderBy('e.dateRetrait','ASC')
         ;
         $result = $qb->getQuery()->getResult();
         return $qb -> getQuery()->getResult();
