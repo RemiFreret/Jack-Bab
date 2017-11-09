@@ -3,6 +3,7 @@
 namespace JBBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class CommandListController extends DefaultController
 {
@@ -43,11 +44,11 @@ class CommandListController extends DefaultController
             );
         }
 
-        if($toUpdate->getStatus()<2){
-            $toUpdate->setStatus($toUpdate->getStatus()+1);
+        if($toUpdate->getState()<2){
+            $toUpdate->setState($toUpdate->getState()+1);
             $em->flush();
         }
 
-        return redirectToRoute('jb_listcommande');
+        return $this -> redirectToRoute('jb_commandlist');
     }
 }

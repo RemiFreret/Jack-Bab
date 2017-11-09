@@ -36,9 +36,9 @@ class OrderController extends Controller
         $commande->setListProduit($this->get('session')->get('panier'));
 
         $time = new \DateTime();
-        $time = $time -> add(\DateInterval::createFromDateString('1920 seconds'));
-        $time1 = $time -> add(\DateInterval::createFromDateString('1 month'));
-
+        $time -> add(\DateInterval::createFromDateString('1920 seconds'));
+        $time2 = new \DateTime();
+        $time2 -> add(\DateInterval::createFromDateString('1 month'));
         $formBuilder
             ->add('dateRetrait', DateTimeType::class, array(
                 'format' => 'yyyy-MM-dd HH:mm',
@@ -47,7 +47,7 @@ class OrderController extends Controller
             ->add('cardNumber',TextType::class)
             ->add('crypto',TextType::class)
             ->add('dateExp',DateType::class, array(
-              'data' => $time,
+              'data' => $time2,
             ))
 
 

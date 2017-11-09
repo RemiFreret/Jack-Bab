@@ -1,18 +1,90 @@
 {# JBBundle/Resources/views/Default/commandlist.html.twig #}
 {% extends 'JBBundle:Default:index.html.twig' %}
-
 {% block body %}
-commandlist
-{% for command in listeCommande %}
+<h3>Liste des commandes</h3>
+<div class="well">
+
+  {% for command in listeCommande %}
+  {% if command.state == 0 %}
+  <div class="alert alert-danger">
+
+
     <p>
-    Commande {{command.id}}, pour {{command.firstName}} {{command.lastName}}</br>
-    Récuperation à : {{command.dateRetrait|date("H:i",false)}} le {{command.dateRetrait|date("d - M - y")}}</br>
-    Contient :
+    Commande <B>{{command.id}}</B></br>
+    Pour <B>{{command.firstName}} {{command.lastName}}</B></br>
+    Récuperation à : <B>{{command.dateRetrait|date("H:i",false)}}</B> le <B>{{command.dateRetrait|date("d - M - y")}}</B></br>
+    Contient :</br>
     {% for item in command.listProduit %}
         {% if item is iterable%}
-        {{item.quantity}} - {{item.name}}
+        <B>{{item.quantity}} - {{item.name}}</B></br>
         {% endif%}
     {% endfor %}
+
+
+    <p class="pasppret"><B>Statut : Pas prêt</B></p>
     </p>
+    </div>
+    {% endif %}
 {% endfor %}
+</div>
+
+<div class="well left">
+{% for command in listeCommande %}
+{% if command.state == 1 %}
+<div class="alert alert-success">
+  <p>
+  Commande <B>{{command.id}}</B>, pour <B>{{command.firstName}} {{command.lastName}}</B></br>
+  Récuperation à : <B>{{command.dateRetrait|date("H:i",false)}}</B> le <B>{{command.dateRetrait|date("d - M - y")}}</B></br>
+  Contient :</br>
+  {% for item in command.listProduit %}
+      {% if item is iterable%}
+      <B>{{item.quantity}} - {{item.name}}</B></br>
+      {% endif%}
+  {% endfor %}
+
+
+  <p class="pret"><B>Statut : Prêt</B></p>
+  </p>
+</div>
+  {% endif %}
+{% endfor %}
+</div>
+<div class="well">
+{% for command in listeCommande %}
+{% if command.state == 2 %}
+<div class="alert alert-info">
+
+
+  <p>
+  Commande <B>{{command.id}}</B>, pour <B>{{command.firstName}} {{command.lastName}}</B></br>
+  Récuperation à : <B>{{command.dateRetrait|date("H:i",false)}}</B> le <B>{{command.dateRetrait|date("d - M - y")}}</B></br>
+  Contient :</br>
+  {% for item in command.listProduit %}
+      {% if item is iterable%}
+      <B>{{item.quantity}} - {{item.name}}</B></br>
+      {% endif%}
+  {% endfor %}
+
+
+  <p class="recuperer"><B>Statut : récupérer</B></p>
+  </form>
+  </p>
+  </div>
+  {% endif %}
+{% endfor %}
+
+</div>
+
+<style>
+.pasppret{
+  color: red;
+}
+.pret{
+  color: green;
+}
+.recuperer{
+  color: blue;
+}
+
+</style>
 {% endblock %}

@@ -29,6 +29,8 @@ class InventoryController extends Controller
             }else{
                 $listeCommande = $repository->findByMonth($year,$month);
             }
+        }else{
+          $listeCommande = $repository->findNext();
         }
 
         return $this->render('JBBundle:Default:inventory.html.twig',array('listeCommande' => $listeCommande));

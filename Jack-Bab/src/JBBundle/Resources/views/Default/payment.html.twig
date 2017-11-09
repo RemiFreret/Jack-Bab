@@ -5,7 +5,7 @@
 <h3>Récapitulatif de commande</h3>
 <div class="well">
   <p>Merci pour votre commande {{ commande.firstName }} {{ commande.lastName }} !</p>
-  <p>Vous pouvez retirer votre commande le <B>{{ commande.dateRetrait|date('m-d') }}</B> à <B>{{ commande.dateRetrait|date('H:i') }}</B></p>
+  <p>Vous pouvez retirer votre commande à <B>{{ commande.dateRetrait|date('H:i',false) }}</B> le <B>{{ commande.dateRetrait|date('d - M - y') }}</B></p>
   <p>Vous avez commandé :</p>
   {% for item in commande.listProduit %}
       {% if item is iterable%}
