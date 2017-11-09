@@ -18,9 +18,16 @@
         <li class="active"><a href="/">Home</a></li>
         <li><a href="about">About</a></li>
         <li><a href="contact">Contact</a></li>
+        {% set user = app.session.get('user') %}
+        {%if user.rights is defined and (user.rights == 1 or user.rights == 2) %}
+        <li><a href="commandlist">Commandes</a></li>
+        <li><a href="inventory">Archives</a></li>
+        {% endif %}
+        {%if user.rights is defined and user.rights == 2%}
+        <li><a href="employee">Administration</a></li>
+        {% endif %}
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        {% set user = app.session.get('user') %}
         {% if user.email is defined %}
           <li><a href="#">Bonjour {{ user.firstName }} {{ user.lastName }} </a></li>
           <li><a href="connexion"><span class="glyphicon glyphicon-log-in"></span> Deconnexion</a></li>
