@@ -1,0 +1,18 @@
+{# JBBundle/Resources/views/Default/inventory.html.twig #}
+{% extends 'JBBundle:Default:index.html.twig' %}
+
+{% block body %}
+commandlist
+{% for command in listeCommande %}
+    <p>
+    Commande {{command.id}}, pour {{command.firstName}} {{command.lastName}}</br>
+    Récuperation à : {{command.dateRetrait|date("H:i",false)}} le {{command.dateRetrait|date("d - M - y")}}</br>
+    Contient :
+    {% for item in command.listProduit %}
+        {% if item is iterable%}
+        {{item.quantity}} - {{item.name}}
+        {% endif%}
+    {% endfor %}
+    </p>
+{% endfor %}
+{% endblock %}

@@ -20,8 +20,29 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('from', $from )
             ->setParameter('to', $to)
         ;
-        $result = $qb->getQuery()->getResult();
         return $qb -> getQuery()->getResult();
+    }
+
+    public function findByMonth($year = null, $month = null){
+        $toYear = false;
+        if ($month === null) {
+            $month = "01";
+            $toYear = true;
+        }
+
+        $startDate = new \DateTime("$year-$month-01 00:00:00");
+        $endDate = new \DateTime("$year-$month-01 00:00:00");
+        if($toYear){
+            $endDate = $endDate->modify('last month of this year')->setTime(23, 59, 59);
+        }
+        $endDate = $endDate->modify('last day of this month')->setTime(23, 59, 59);
+
+        $qb = $this->createQueryBuilder('object');
+        $qb->where('object.dateRetrait BETWEEN :start AND :end');
+        $qb->setParameter('start', $startDate);
+        $qb->setParameter('end', $endDate);
+
+        return $qb->getQuery()->getResult();
     }
 
     public function findNext(){
