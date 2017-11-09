@@ -37,6 +37,8 @@ class EmployeeController extends Controller
                     $currentUser->setRights($rights);
                     $em->flush();
                     $this->get('session')->getFlashBag()->add("modif","Les droits en été mis à jour");
+                }else{
+                  $this->get('session')->getFlashBag()->add("fail","Les droits ne sont pas correct ! ");
                 }
             }
         }
