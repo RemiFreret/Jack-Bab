@@ -33,7 +33,7 @@ class EmployeeController extends Controller
                 $currentUser = $i;
             }
             if($currentUser){
-                if($rights){
+                if($rights && ($rights == 1 || $rights == 2 || $rights == 0)){
                     $currentUser->setRights($rights);
                     $em->flush();
                     $this->get('session')->getFlashBag()->add("modif","Les droits en été mis à jour");
