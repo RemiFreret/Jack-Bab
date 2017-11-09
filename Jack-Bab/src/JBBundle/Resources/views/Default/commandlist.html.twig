@@ -19,9 +19,12 @@
         <B>{{item.quantity}} - {{item.name}}</B></br>
         {% endif%}
     {% endfor %}
+    <form class="" action="{{ path('jb_commandliststatus') }}" method="post">
+      <input type="text" name="id" value="{{ command.id }}" hidden />
+      <input type="submit" value="OK"/>
+    </form>
 
-
-    <p class="pasppret"><B>Statut : Pas prêt</B></p>
+    <p class="pasppret"><B>Statut : Pas prête</B></p>
     </p>
     </div>
     {% endif %}
@@ -41,9 +44,12 @@
       <B>{{item.quantity}} - {{item.name}}</B></br>
       {% endif%}
   {% endfor %}
+  <form class="" action="{{ path('jb_commandliststatus') }}" method="post">
+    <input type="text" name="id" value="{{ command.id }}" hidden />
+    <input type="submit" value="OK"/>
+  </form>
 
-
-  <p class="pret"><B>Statut : Prêt</B></p>
+  <p class="pret"><B>Statut : Prête</B></p>
   </p>
 </div>
   {% endif %}
@@ -64,9 +70,12 @@
       <B>{{item.quantity}} - {{item.name}}</B></br>
       {% endif%}
   {% endfor %}
+  <form class="" action="{{ path('jb_commandliststatus') }}" method="post">
+    <input type="text" name="id" value="{{ command.id }}" hidden />
+    <input type="submit" value="OK"/>
+  </form>
 
-
-  <p class="recuperer"><B>Statut : récupérer</B></p>
+  <p class="recuperer"><B>Statut : récupérée</B></p>
   </form>
   </p>
   </div>
