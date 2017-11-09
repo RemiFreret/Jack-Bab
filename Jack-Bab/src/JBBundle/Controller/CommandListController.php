@@ -31,7 +31,6 @@ class CommandListController extends DefaultController
             return $this->redirectToRoute('jb_homepage');
         }
 
-
         $em = $this
             ->getDoctrine()
             ->getManager()

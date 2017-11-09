@@ -69,6 +69,10 @@ $collection->add('jb_contact', new Route('/contact', array(
   '_controller' => 'JBBundle:Contact:index',
 )));
 
+$collection->add('jb_employee', new Route('/employee', array(
+  '_controller' => 'JBBundle:Employee:index',
+)));
+
 $collection->add('jb_inventory', new Route('/inventory', array(
   '_controller' => 'JBBundle:Inventory:index',
 )));
