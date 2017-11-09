@@ -34,7 +34,9 @@ class OrderController extends Controller
         }
 
         $commande->setListProduit($this->get('session')->get('panier'));
-
+        if (count($commande->getListProduit()) == 0){
+            return $this->redirectToRoute('jb_homepage');
+        }
         $time = new \DateTime();
         $time -> add(\DateInterval::createFromDateString('1920 seconds'));
         $time2 = new \DateTime();
