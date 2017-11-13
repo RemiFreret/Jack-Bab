@@ -2,8 +2,22 @@
 {% extends 'JBBundle:Default:index.html.twig' %}
 
 {% block body %}
-<h1>Contactez nous</h1>
-<div class="well">
-  <p>Vous pouvez à tout moment nous contacter sur l'adresse : f.bezancon@gmail.com</p>
+<h1>Contactez nous !</h1>
+<div class=" well">
+  <form class="form-signin" action="{{ path('jb_contact') }}" method="post">
+    <input type="text" name="title" class="form-control" placeholder="Titre">
+    <input type="mail" name="email"  class="form-control" placeholder="Email">
+    <textarea type="text" name="message" class="form-control" placeholder="Message"></textarea>
+    <input type="submit"class="btn btn-lg btn-primary btn-block
+    " value="Envoyer"/>
+  </form>
 </div>
+
+  {% for message in listeMessage  %}
+  <div class="well">
+  <B>Titre : </B>{{ message.title }}</br>
+  <B>Message : </B>{{ message.message }}</br>
+  <B>Date : </B>{{ message.time|date("d - M - y") }}</br>
+</div>
+  {% endfor %}
 {% endblock %}

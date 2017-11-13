@@ -1,15 +1,43 @@
-Jack-Bab
-========
+# Jack-Bab
+## Prérequis :
+- php
+- composer
+- symfony
+- mysql
 
-Master à jour pour la BDD
-Branche Remi-Shop
-  Travail sur le shop, les produits, le panier ...
---------
-Master à jour pour la branche matthieu, ajout la plupart des fonctions métiers
+## Installation
 
-A Symfony project created on September 7, 2017, 10:48 am.
+Copiez le repository sur votre machine :
+```
+git clone https://github.com/RemiFreret/Jack-Bab
+```
 
-Matthieu Jan
-Remi Freret
-Felix Bezançon
-Oussama Barhdadi
+Mettez vous à la racine du site :
+```
+cd Jack-Bab/Jack-Bab
+```
+
+Lancez composer et renseignez les champs demandés
+```
+composer install
+```
+
+Initialisez la base de données
+```
+php bin/console doctrine:database:create
+```
+
+## Base de données
+Remplissez la base de donnée avec les produits
+(Indispensable pour pouvoir afficher le shop)
+
+Remplissez la base de donnée avec au moins un utilisateur avec rights à 2
+(Indispensable pour administrer le site)
+
+Vous pouvez vous inspirez du fichier symfony.mysql (qui peut être importé dans phpmyadmin)
+
+Ou le faire à la main :
+```
+php bin/console doctrine:schema:update --force
+```
+Puis modifier la base de donnée
