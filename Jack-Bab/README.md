@@ -25,9 +25,9 @@ composer install
 Initialisez la base de données
 ```
 php bin/console doctrine:database:create
-php bin/console doctrine:schema:update --force
 ```
 
+## Base de données
 Remplissez la base de donnée avec les produits
 (Indispensable pour pouvoir afficher le shop)
 
@@ -35,3 +35,9 @@ Remplissez la base de donnée avec au moins un utilisateur avec rights à 2
 (Indispensable pour administrer le site)
 
 Vous pouvez vous inspirez du fichier symfony.mysql (qui peut être importé dans phpmyadmin)
+
+Ou le faire à la main :
+```
+php bin/console doctrine:schema:update --force
+```
+Puis modifier la base de donnée
