@@ -8,11 +8,11 @@
 
       {% for produit in produits %}
         <div class="produit container-fluid col-sm-5">
-          <div class="col-sm-3">
-            <img src="{{ asset('JackBab.png')}}" alt="Jack&Bab" class="itemIcone" style="padding-top: 25%;"/>
+          <div class="col-sm-4">
+            <img src="data:image/png;base64,{{ produit.image }}" alt="Jack&Bab" class="itemIcone"/>
           </div>
           <form class="" action="{{ path('jb_ajoutPanier') }}" method="post">
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               <input type="number" name="id" value="{{ produit.id }}" hidden>
               <input type="text" name="name" value="{{ produit.name }}" hidden>
               <input type="text" name="description" value="{{ produit.description }}" hidden>

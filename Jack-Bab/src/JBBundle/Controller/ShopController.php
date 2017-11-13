@@ -27,6 +27,10 @@ class ShopController extends DefaultController
             );
         }
 
+        foreach ($product as $key => $entity) {
+          $entity->setImage(base64_encode(stream_get_contents($entity->getImage())));
+        }
+
         return $this->render('JBBundle:Default:shop.html.twig', array(
                       'produits' => $product,
                     ));
