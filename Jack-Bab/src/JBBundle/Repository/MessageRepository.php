@@ -12,7 +12,7 @@ class MessageRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findLast(){
         $qb = $this->createQueryBuilder('e');
-        $qb -> orderBy('e.time','ASC');
+        $qb -> orderBy('e.time','DESC');
         return $qb->getQuery()->setMaxResults(10)->getResult();
     }
 }

@@ -9,7 +9,7 @@ use JBBundle\Entity\Message;
  * Controller for the contact page. Display the contact and golden book. Also
  * register new entries
  */
-class ContactController extends DefaultController
+class ContactController extends Controller
 {
     public function indexAction(Request $request)
     {
