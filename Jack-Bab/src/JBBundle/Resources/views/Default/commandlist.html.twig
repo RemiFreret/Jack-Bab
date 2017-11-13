@@ -1,33 +1,46 @@
 {# JBBundle/Resources/views/Default/commandlist.html.twig #}
 {% extends 'JBBundle:Default:index.html.twig' %}
 {% block body %}
-<h3>Liste des commandes</h3>
-<div class="well">
+  <h3>Liste des commandes</h3>
+  <div class="well">
 
-  {% for command in listeCommande %}
-  {% if command.state == 0 %}
-  <div class="alert alert-danger">
+    {% for command in listeCommande %} 
+      {% if command.state == 0 %}
+        <div class="alert alert-danger">
 
-
-    <p>
-    Commande <B>{{command.id}}</B></br>
-    Pour <B>{{command.firstName}} {{command.lastName}}</B></br>
-    Récuperation à : <B>{{command.dateRetrait|date("H:i",false)}}</B> le <B>{{command.dateRetrait|date("d - M - y")}}</B></br>
-    Contient :</br>
+          <p>
+            Commande
+            <b>{{command.id}}</b>
+          </br>
+          Pour
+          <b>{{command.firstName}}
+            {{command.lastName}}</b>
+        </br>
+        Récuperation à :
+        <b>{{command.dateRetrait|date("H:i",false)}}</b>
+        le
+        <b>{{command.dateRetrait|date("d - M - y")}}</b>
+      </br>
+      Contient :</br>
     {% for item in command.listProduit %}
-        {% if item is iterable%}
-        <B>{{item.quantity}} - {{item.name}}</B></br>
-        {% endif%}
+      {% if item is iterable%}
+        <B>{{item.quantity}}
+          -
+          {{item.name}}</b>
+      </br>
+      {% endif%}
     {% endfor %}
     <form class="" action="{{ path('jb_commandliststatus') }}" method="post">
-      <input type="text" name="id" value="{{ command.id }}" hidden />
+      <input type="text" name="id" value="{{ command.id }}" hidden="hidden"/>
       <input type="submit" value="OK"/>
     </form>
 
-    <p class="pasppret"><B>Statut : Pas prête</B></p>
+    <p class="pasppret">
+      <b>Statut : Pas prête</b>
     </p>
-    </div>
-    {% endif %}
+  </p>
+</div>
+{% endif %}
 {% endfor %}
 </div>
 
@@ -36,23 +49,36 @@
 {% if command.state == 1 %}
 <div class="alert alert-success">
   <p>
-  Commande <B>{{command.id}}</B>, pour <B>{{command.firstName}} {{command.lastName}}</B></br>
-  Récuperation à : <B>{{command.dateRetrait|date("H:i",false)}}</B> le <B>{{command.dateRetrait|date("d - M - y")}}</B></br>
-  Contient :</br>
-  {% for item in command.listProduit %}
-      {% if item is iterable%}
-      <B>{{item.quantity}} - {{item.name}}</B></br>
-      {% endif%}
-  {% endfor %}
-  <form class="" action="{{ path('jb_commandliststatus') }}" method="post">
-    <input type="text" name="id" value="{{ command.id }}" hidden />
-    <input type="submit" value="OK"/>
-  </form>
+    Commande
+    <b>{{command.id}}</b>, pour
+    <b>{{command.firstName}}
+      {{command.lastName}}</b>
+  </br>
+  Récuperation à :
+  <b>{{command.dateRetrait|date("H:i",false)}}</b>
+  le
+  <b>{{command.dateRetrait|date("d - M - y")}}</b>
+</br>
+Contient :</br>
+{% for item in command.listProduit %}
+{% if item is iterable%}
+  <B>{{item.quantity}}
+    -
+    {{item.name}}</b>
+</br>
+{% endif%}
+{% endfor %}
+<form class="" action="{{ path('jb_commandliststatus') }}" method="post">
+<input type="text" name="id" value="{{ command.id }}" hidden="hidden"/>
+<input type="submit" value="OK"/>
+</form>
 
-  <p class="pret"><B>Statut : Prête</B></p>
-  </p>
+<p class="pret">
+<b>Statut : Prête</b>
+</p>
+</p>
 </div>
-  {% endif %}
+{% endif %}
 {% endfor %}
 </div>
 <div class="well">
@@ -60,40 +86,44 @@
 {% if command.state == 2 %}
 <div class="alert alert-info">
 
-
-  <p>
-  Commande <B>{{command.id}}</B>, pour <B>{{command.firstName}} {{command.lastName}}</B></br>
-  Récuperation à : <B>{{command.dateRetrait|date("H:i",false)}}</B> le <B>{{command.dateRetrait|date("d - M - y")}}</B></br>
-  Contient :</br>
-  {% for item in command.listProduit %}
-      {% if item is iterable%}
-      <B>{{item.quantity}} - {{item.name}}</B></br>
-      {% endif%}
-  {% endfor %}
-  <form class="" action="{{ path('jb_commandliststatus') }}" method="post">
-    <input type="text" name="id" value="{{ command.id }}" hidden />
-    <input type="submit" value="OK"/>
-  </form>
-
-  <p class="recuperer"><B>Statut : récupérée</B></p>
-  </form>
-  </p>
-  </div>
-  {% endif %}
+<p>
+Commande
+<b>{{command.id}}</b>, pour
+<b>{{command.firstName}}
+{{command.lastName}}</b>
+</br>
+Récuperation à :
+<b>{{command.dateRetrait|date("H:i",false)}}</b>
+le
+<b>{{command.dateRetrait|date("d - M - y")}}</b>
+</br>
+Contient :</br>
+{% for item in command.listProduit %}
+{% if item is iterable%}
+<B>{{item.quantity}}
+-
+{{item.name}}</b>
+</br>
+{% endif%}
 {% endfor %}
+<form class="" action="{{ path('jb_commandliststatus') }}" method="post">
+<input type="text" name="id" value="{{ command.id }}" hidden="hidden"/>
+<input type="submit" value="OK"/>
+</form>
 
+<p class="recuperer">
+<b>Statut : récupérée</b>
+</p>
+</form>
+</p>
 </div>
-
-<style>
-.pasppret{
-  color: red;
+{% endif %}{% endfor %} </div> <style>
+.pasppret {
+color: red;
 }
-.pret{
-  color: green;
+.pret {
+color: green;
 }
-.recuperer{
-  color: blue;
-}
-
-</style>
-{% endblock %}
+.recuperer {
+color: blue;
+} </style>{% endblock %}
