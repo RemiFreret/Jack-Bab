@@ -58,7 +58,6 @@ class CommandeRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('to', $next)
             ->orderBy('e.dateRetrait','ASC')
         ;
-        $result = $qb->getQuery()->getResult();
         return $qb -> getQuery()->getResult();
     }
 }
