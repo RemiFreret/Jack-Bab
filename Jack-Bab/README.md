@@ -1,7 +1,7 @@
 # Jack-Bab
 ## Prérequis :
 - php
-- commposer
+- composer
 - symfony
 - mysql
 
@@ -34,4 +34,4 @@ Remplissez la base de donnée avec les produits
 Remplissez la base de donnée avec au moins un utilisateur avec rights à 2
 (Indispensable pour administrer le site)
 
-Vous pouvez vous inspirez du fichier symfony.mysql
+Vous pouvez vous inspirez du fichier symfony.mysql (qui peut être importé dans phpmyadmin)
