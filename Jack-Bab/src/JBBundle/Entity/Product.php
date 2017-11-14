@@ -42,6 +42,13 @@ class Product
      */
     private $price;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="blob")
+     */
+    private $image;
+
 
     /**
      * Get id
@@ -124,5 +131,28 @@ class Product
     {
         return $this->price;
     }
-}
 
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+}
